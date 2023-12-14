@@ -39,11 +39,17 @@ const thoughtController = {
         { new: true }
       );
 
-      if (!dbUserData) {
-        return res.status(404).json({ message: 'Thought created but no user with this id!' });
-      }
+      let successMessage = `Thought successfully created!`;
+      let noUserIDFoundMessage = `Thought created but no user with this id!`;
 
-      res.json({ message: 'Thought successfully created!' });
+      let message = { message: successMessage, thought: dbThoughtData };
+
+      if (!dbUserData) {
+        message = { message: noUserIDFoundMessage, help: `Make sure you include a proper 'userId' property in your req.body` };
+        return res.status(404).json(message); 
+      };
+
+      res.json(message);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -65,11 +71,9 @@ const thoughtController = {
   // delete thought
   async deleteThought(req, res) {
     try {
-      const dbThoughtData = await Thought.findOneAndRemove({ _id: req.params.thoughtId })
+      const dbThoughtData = await Thought.findOneAndDelete({ _id: req.params.thoughtId })
 
-      if (!dbThoughtData) {
-        return res.status(404).json({ message: 'No thought with this id!' });
-      }
+      if (!dbThoughtData) { return res.status(404).json({ message: 'No thought with this id!' }); }
 
       // remove thought id from user's `thoughts` field
       const dbUserData = User.findOneAndUpdate(
@@ -82,7 +86,7 @@ const thoughtController = {
         return res.status(404).json({ message: 'Thought created but no user with this id!' });
       }
 
-      res.json({ message: 'Thought successfully deleted!' });
+      res.json({ message: 'Thought successfully deleted!', thought: dbThoughtData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

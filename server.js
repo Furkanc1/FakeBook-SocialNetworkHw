@@ -3,7 +3,6 @@ const { User, Thought } = require('./models');
 const getUsers = async () => {
     try {
         let users = await User.find().select('-__v');
-        console.log(`Users`, users);
         return users;
     } catch (error) {
         console.log(`Error getting Users`, error);

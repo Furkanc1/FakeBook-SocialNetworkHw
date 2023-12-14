@@ -6,6 +6,8 @@ const userController = {
     try {
       const dbUserData = await User.find()
         .select('-__v')
+        .populate('friends')
+        .populate('thoughts');
 
       res.json(dbUserData);
     } catch (err) {
@@ -35,7 +37,7 @@ const userController = {
   async createUser(req, res) {
     try {
       const dbUserData = await User.create(req.body);
-      res.json(dbUserData);
+      res.json({ message: `User Successfully Created`, user: dbUserData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -76,7 +78,7 @@ const userController = {
 
       // BONUS: get ids of user's `thoughts` and delete them all
       await Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
-      res.json({ message: 'User and associated thoughts deleted!' });
+      res.json({ message: 'User and associated thoughts deleted!', user: dbUserData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

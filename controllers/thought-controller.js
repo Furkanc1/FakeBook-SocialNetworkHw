@@ -86,7 +86,7 @@ const thoughtController = {
         return res.status(404).json({ message: 'Thought created but no user with this id!' });
       }
 
-      res.json({ message: 'Thought successfully deleted!', thought: dbThoughtData });
+      res.json({ message: 'Thought deleted!', thought: dbThoughtData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -106,7 +106,10 @@ const thoughtController = {
         return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json(dbThoughtData);
+      res.json({
+        message: `Reaction Successfully Added`,
+        updatedThought: dbThoughtData,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -125,7 +128,10 @@ const thoughtController = {
         return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json(dbThoughtData);
+      res.json({
+        message: `Reaction Removed`,
+        updatedThought: dbThoughtData
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

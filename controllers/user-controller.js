@@ -119,7 +119,7 @@ const userController = {
       }
 
       res.json({
-        message: `Friend Successfully Removed`,
+        message: `Friend Removed`,
         updatedUser: dbUserData
       });
     } catch (err) {

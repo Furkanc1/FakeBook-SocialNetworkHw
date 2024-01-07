@@ -1,7 +1,16 @@
 # FakeBook-SocialNetworkHw
 week 18 homework, creating a social network website where people can post comment and add each other as friends
 
-as usual: Worked on homework with Tutor + Brother, Used online resources ( full stack, chatgpt for references, google questions/answers)
+### githubRepository:
+
+https://github.com/Furkanc1/FakeBook-SocialNetworkHw 
+
+### VIDEO WALKTHROUGH: 
+
+https://www.loom.com/share/5617184a053c4f42980f56df45af32f8?sid=356bfc23-e246-4dbd-b8ef-46d18f8bdb3a
+
+
+as usual: Worked on homework with Tutor + Brother, Used online resources ( full stack questions.com , chatgpt for references, google questions/answers)
 
 ## Your Task
 
